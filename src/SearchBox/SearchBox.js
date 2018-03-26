@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class SearchBox extends Component {
+  static propTypes = {
+    onChange: PropTypes.func.isRequired
+  }
+
   constructor(props) {
     super(props);
     this.state = {value: ''};

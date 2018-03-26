@@ -23,6 +23,13 @@ describe('<SearchBox />', () =>  {
     expect(wrapper.props().value).to.equal('');
   });
 
+  it('requires onChange props', () => {
+    sinon.stub(console, 'error');
+    let wrapper = shallow(<SearchBox/>);
+    sinon.assert.called(console.error);
+    console.error.restore();
+  });
+
   it('set the state value when user types in', () => {
     let wrapper = shallow(<SearchBox onChange={onChange}/>);
     wrapper.find('input').simulate('change', {target: {value: 't'}})
@@ -36,6 +43,7 @@ describe('<SearchBox />', () =>  {
     wrapper.find('input').simulate('change', {target: {value: ''}})
     expect(wrapper.props().value).to.equal('');
   });
+
 
   it('propagates value to parent component by calling this.props.onChange', () => {
     let wrapper = shallow(<SearchBox onChange={onChange}/>);
