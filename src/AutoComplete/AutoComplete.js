@@ -16,7 +16,10 @@ class AutoComplete extends Component {
 
   render() {
     return (
-      <SearchBox onChange={this.onSearchBoxUpdate}/>
+      <div>
+        <SearchBox onChange={this.onSearchBoxUpdate}/>
+        {this.props.children}
+      </div>
     );
   }
 }
