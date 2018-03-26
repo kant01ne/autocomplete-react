@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SearchBox from '../SearchBox/SearchBox';
+import Index from '../Index/Index';
 
 class AutoComplete extends Component {
   constructor(props) {
@@ -15,10 +16,30 @@ class AutoComplete extends Component {
   }
 
   render() {
+    let onSearchBoxUpdate = this.onSearchBoxUpdate;
+    let children = this.props.children.length > 1 ? this.props.children : [this.props.children]
     return (
       <div>
-        <SearchBox onChange={this.onSearchBoxUpdate}/>
-        {this.props.children}
+        {children &&
+          children.map((children, key) => {
+            switch(children.type) {
+              case SearchBox:
+                let searchBoxComponent = React.cloneElement(children, {
+                  key: key,
+                  onChange: onSearchBoxUpdate,
+                });
+                return searchBoxComponent;
+              case Index:
+                let indexComponent = React.cloneElement(children, {
+                  key: key,
+                  value: this.state.value
+                });
+                return indexComponent;
+              default:
+                return children;
+            }
+          })
+        }
       </div>
     );
   }

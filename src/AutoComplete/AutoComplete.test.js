@@ -19,14 +19,22 @@ describe('<AutoComplete />', () =>  {
   });
 
   it('renders without crashing', () => {
-    let wrapper = shallow(<AutoComplete />);
+    let wrapper = shallow(
+      <AutoComplete>
+        <SearchBox/>
+      </AutoComplete>
+    );
     expect(wrapper.find(SearchBox).length).to.equal(1);
     expect(wrapper.state().value).to.equal('');
   });
 
 
   it('update state value on user input', () => {
-    let wrapper = mount(<AutoComplete />);
+    let wrapper = mount(
+      <AutoComplete>
+        <SearchBox/>
+      </AutoComplete>
+    );
     wrapper.find('input').simulate('change', {target: {value: 'test'}})
     expect(wrapper.state().value).to.equal('test');
   });

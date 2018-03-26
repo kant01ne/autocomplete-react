@@ -23,25 +23,18 @@ describe('<SearchBox />', () =>  {
     expect(wrapper.props().value).to.equal('');
   });
 
-  it('requires onChange props', () => {
-    sinon.stub(console, 'error');
-    let wrapper = shallow(<SearchBox/>);
-    sinon.assert.called(console.error);
-    console.error.restore();
-  });
-
   it('set the state value when user types in', () => {
     let wrapper = shallow(<SearchBox onChange={onChange}/>);
     wrapper.find('input').simulate('change', {target: {value: 't'}})
-    expect(wrapper.props().value).to.equal('t');
+    expect(wrapper.state().value).to.equal('t');
     wrapper.find('input').simulate('change', {target: {value: 'te'}})
-    expect(wrapper.props().value).to.equal('te');
+    expect(wrapper.state().value).to.equal('te');
     wrapper.find('input').simulate('change', {target: {value: 'tes'}})
-    expect(wrapper.props().value).to.equal('tes');
+    expect(wrapper.state().value).to.equal('tes');
     wrapper.find('input').simulate('change', {target: {value: 'test'}})
-    expect(wrapper.props().value).to.equal('test');
+    expect(wrapper.state().value).to.equal('test');
     wrapper.find('input').simulate('change', {target: {value: ''}})
-    expect(wrapper.props().value).to.equal('');
+    expect(wrapper.state().value).to.equal('');
   });
 
 
@@ -50,5 +43,10 @@ describe('<SearchBox />', () =>  {
     wrapper.find('input').simulate('change', {target: {value: 't'}})
     expect(onChange.callCount).to.equal(1);
   });
+
+    it('can define default value', () => {
+      let wrapper = shallow(<SearchBox onChange={onChange} defaultValue='testValue'/>);
+      expect(wrapper.state().value).to.equal('testValue');
+    });
 
 });

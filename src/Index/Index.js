@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Index extends Component {
   static propTypes = {
@@ -14,8 +15,7 @@ class Index extends Component {
 
     return (
       <div>
-        {this.props.indexName}
-
+        {this.props.indexName}: {this.props.value}
       </div>
     );
   }
