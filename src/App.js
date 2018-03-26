@@ -4,16 +4,10 @@ import AutoComplete from './AutoComplete/AutoComplete';
 import Index from './Index/Index';
 import './App.css';
 
-// curl -X POST \
-//      -H "X-Algolia-API-Key: 6be0576ff61c053d5f9a3225e2a90f76" \
-//      -H "X-Algolia-Application-Id: latency" \
-//      --data-binary '{ "params": "query=iphone" }' \
-//      "https://latency-dsn.algolia.net/1/indexes/bestbuy/query"
-
 function BestBuyProduct(hit) {
   return(
     <div>
-      {hit.shortDescription}
+      {hit.name}
     </div>
   );
 
