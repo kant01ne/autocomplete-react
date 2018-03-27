@@ -10,7 +10,7 @@ class SearchBox extends Component {
     super(props);
     let value = this.props.defaultValue || '';
     this.state = {value: value};
-    
+
     this.handleChange = this.handleChange.bind(this);
   }
 

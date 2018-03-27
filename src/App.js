@@ -4,13 +4,20 @@ import AutoComplete from './AutoComplete/AutoComplete';
 import Index from './Index/Index';
 import './App.css';
 
-function BestBuyProduct(hit) {
+function BestBuyProduct(hit, key) {
   return(
-    <div>
+    <li key={key}>
       {hit.name}
-    </div>
+    </li>
   );
+}
 
+function IkeaProduct(hit, key) {
+  return(
+    <li key={key}>
+      {hit.name}
+    </li>
+  );
 }
 
 
@@ -48,8 +55,10 @@ class App extends Component {
             apiKey="6be0576ff61c053d5f9a3225e2a90f76"
           >
             <SearchBox/>
+            <h1>Best Buy Products</h1>
             <Index indexName="bestbuy" hit={BestBuyProduct}/>
-            <Index indexName="airbnb" hit={BestBuyProduct}/>
+            <h1>Ikea Products</h1>
+            <Index indexName="ikea" hit={IkeaProduct}/>
           </AutoComplete>
         </div>
       </div>

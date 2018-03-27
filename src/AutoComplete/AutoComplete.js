@@ -16,6 +16,7 @@ class AutoComplete extends Component {
   }
 
   render() {
+    let {appId, apiKey} = this.props;
     let onSearchBoxUpdate = this.onSearchBoxUpdate;
     let children = this.props.children.length > 1 ? this.props.children : [this.props.children]
     return (
@@ -25,13 +26,17 @@ class AutoComplete extends Component {
             switch(children.type) {
               case SearchBox:
                 let searchBoxComponent = React.cloneElement(children, {
-                  key: key,
+                  appId,
+                  apiKey,
+                  key,
                   onChange: onSearchBoxUpdate,
                 });
                 return searchBoxComponent;
               case Index:
                 let indexComponent = React.cloneElement(children, {
-                  key: key,
+                  appId,
+                  apiKey,
+                  key,
                   value: this.state.value
                 });
                 return indexComponent;
