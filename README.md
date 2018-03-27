@@ -17,7 +17,7 @@ Alternatively if you just want to play around with this module you can an existi
 
 To add an Autocomplete component to your website you will need your index name, appId and apiKey provided by Algolia. You can find those informations in your [Algolia dashboard](https://www.algolia.com/apps/_/api-keys).
 
-### Basic usage
+### Basic usage
 
 In your React application you can use the following code:
 
@@ -31,7 +31,7 @@ In your React application you can use the following code:
   </AutoComplete>
 ```
 
-### Display custom hits
+### Display custom hits
 
 By default `<Index>` tag will display your hits (results from search) in a list showing the name attribute.
 It is likely that you will want to display your Hits differentely. To achieve this goal let's start by writing a `customHitsDisplay` function:
@@ -56,7 +56,7 @@ Then in your `Autocomplete` component:
 ```
 
 
-### Multi index support 
+###  Multi index support
 
 This module supports for multiple indexes:
 
@@ -71,7 +71,7 @@ This module supports for multiple indexes:
   </AutoComplete>
 ```
 
-### Custom page rendering
+### Custom page rendering
 
 You can arrange and style what you want to display as you which, creating nested components and overriding the current style of the library:
 
