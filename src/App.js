@@ -42,6 +42,7 @@ class App extends Component {
           <div className="container margin-50">
             <div className="flex-2">
               <SearchBox
+                placeholder="Search for any products"
                 onChange={this.onSearchBoxInput}
               />
             </div>

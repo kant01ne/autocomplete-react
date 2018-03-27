@@ -18,9 +18,8 @@ describe('<SearchBox />', () =>  {
   });
 
   it('renders without crashing', () => {
-    let wrapper = shallow(<SearchBox onChange={onChange}/>);
-    expect(wrapper.find('input').length).to.equal(1);
-    expect(wrapper.props().value).to.equal('');
+    let wrapper = shallow(<SearchBox onChange={onChange} placeholder="Should display this placeholder"/>);
+    expect(wrapper.find('input').html()).to.equal('<input type="search" id="searchBox" placeholder="Should display this placeholder" value=""/>');
   });
 
   it('set the state value when user types in', () => {
