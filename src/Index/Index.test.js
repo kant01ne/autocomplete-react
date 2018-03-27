@@ -71,4 +71,25 @@ describe('<Index />', () =>  {
     });
   });
 
+  it('Accepts custom function for Hits rendering', (done) => {
+    let customDOM = function(item, key) {
+      return <span key={key}>{item.name}: {item.description}</span>
+    }
+    let wrapper = mount(
+      <Index indexName="test" appId="abc123" apiKey="supersecret" value='12' hit={customDOM}/>
+    );
+    wrapper.setProps({value:'random-value'});
+
+    moxios.wait(function () {
+      let request = moxios.requests.mostRecent();
+      request.respondWith({
+          status: 200,
+          response: { hits: [{name:'test1234', description:'short description of a test1234'}] }
+        }).then(() => {
+          expect(wrapper.html()).to.equal('<ul><span>test1234: short description of a test1234</span></ul>');
+          done();
+        });
+    });
+  });
+
 });

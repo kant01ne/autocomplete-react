@@ -4,8 +4,7 @@ ul {
 }
 
 li {
-  height: 60px;
-  width: 120px;
+  height: 100px;
   font-size: 0.7em;
   margin: 10px;
   list-style-type: none;
