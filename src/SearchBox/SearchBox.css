@@ -9,6 +9,9 @@
   border: none;
 	color: #424242;
   border-bottom: 1px solid #ddd;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
 }
 
 #searchBox:focus {

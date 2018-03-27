@@ -1,11 +1,11 @@
 .App {
   text-align: center;
-  background-color: #C5CAE9;
+  background-color: #ECEFF1;
 }
 
 .App-header {
-  background-color: #3F51B5;
-  height: 80px;
+  background-color: #607D8B;
+  height: 60px;
   padding: 20px;
   color: white;
 }
@@ -37,8 +37,4 @@
 
 .flex-4 {
   flex: 4;
-}
-
-.margin-50 {
-  margin: 50px;
 }

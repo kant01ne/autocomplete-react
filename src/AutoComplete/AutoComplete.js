@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SearchBox from '../SearchBox/SearchBox';
 import Index from '../Index/Index';
 
+
 class AutoComplete extends Component {
   constructor(props) {
     super(props);
@@ -55,7 +56,7 @@ class AutoComplete extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{width:'100%'}}>
         {this.props.children && this._recursivelyPopulateChildrenProps(this.props.children)}
       </div>
     );

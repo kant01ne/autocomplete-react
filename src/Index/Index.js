@@ -57,7 +57,7 @@ class Index extends Component {
     }
     return (
       <ul>
-        {this.state.hits && this.state.hits && this.state.hits.map((item, key) => {
+        {this.state.hits && this.state.hits.map((item, key) => {
           return Hit(item, key);
         })}
       </ul>

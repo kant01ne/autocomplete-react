@@ -39,7 +39,7 @@ class App extends Component {
         </header>
         <div className="App-intro">
           <h2>Testing the Autocomplete component</h2>
-          <div className="container margin-50">
+          <div className="container">
             <AutoComplete
               appId="latency"
               apiKey="6be0576ff61c053d5f9a3225e2a90f76"
