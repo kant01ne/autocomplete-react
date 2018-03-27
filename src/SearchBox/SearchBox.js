@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './SearchBox.css';
 
 class SearchBox extends Component {
   static propTypes = {
@@ -23,7 +24,7 @@ class SearchBox extends Component {
 
   render() {
     return (
-      <input
+      <input id="searchBox"
         type="search"
         value={this.state.value}
         onChange={this.handleChange}
