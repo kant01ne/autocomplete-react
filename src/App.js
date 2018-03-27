@@ -34,32 +34,37 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div>
-          <div>Testing the SearchBox component</div>
-          <div>
-            <SearchBox
-              onChange={this.onSearchBoxInput}
-            />
+        <header className="App-header">
+          <h1 className="App-title">Algolia Autocomplete-react</h1>
+        </header>
+        <div className="App-intro">
+          <h2>Testing the SearchBox component</h2>
+          <div className="container margin-50">
+            <div className="flex-2">
+              <SearchBox
+                onChange={this.onSearchBoxInput}
+              />
+            </div>
+            <div className="flex-2">
+              <SearchBox
+                defaultValue='SearchBox with default value'
+                onChange={this.onSearchBoxInput}
+              />
+            </div>
           </div>
-          <div>
-            <SearchBox
-              defaultValue='SearchBox with default value'
-              onChange={this.onSearchBoxInput}
-            />
+          <h2>Testing the Autocomplete component</h2>
+          <div className="container">
+            <AutoComplete
+              appId="latency"
+              apiKey="6be0576ff61c053d5f9a3225e2a90f76"
+            >
+              <SearchBox/>
+              <h3>Best Buy Products</h3>
+              <Index indexName="bestbuy" hit={BestBuyProduct}/>
+              <h3>Ikea Products</h3>
+              <Index indexName="ikea" hit={IkeaProduct}/>
+            </AutoComplete>
           </div>
-        </div>
-        <div>
-          <div>Testing the Autocomplete component</div>
-          <AutoComplete
-            appId="latency"
-            apiKey="6be0576ff61c053d5f9a3225e2a90f76"
-          >
-            <SearchBox/>
-            <h1>Best Buy Products</h1>
-            <Index indexName="bestbuy" hit={BestBuyProduct}/>
-            <h1>Ikea Products</h1>
-            <Index indexName="ikea" hit={IkeaProduct}/>
-          </AutoComplete>
         </div>
       </div>
     );
