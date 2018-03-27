@@ -15,7 +15,7 @@ class AutoComplete extends Component {
     });
   }
 
-  _recursiveDOMRendering(children) {
+  _recursivelyPopulateChildrenProps(children) {
     children = children.length > 1 ? children : [children]
     let {appId, apiKey} = this.props;
     let onSearchBoxUpdate = this.onSearchBoxUpdate;
@@ -42,7 +42,10 @@ class AutoComplete extends Component {
 
       default:
         if (children.props.children && children.props.children.type) {
-          return this._recursiveDOMRendering(children.props.children);
+          return React.cloneElement(children, {
+            key,
+            children: this._recursivelyPopulateChildrenProps(children.props.children)
+          });
         } else {
           return children;
         }
@@ -53,7 +56,7 @@ class AutoComplete extends Component {
   render() {
     return (
       <div>
-        {this.props.children && this._recursiveDOMRendering(this.props.children)}
+        {this.props.children && this._recursivelyPopulateChildrenProps(this.props.children)}
       </div>
     );
   }

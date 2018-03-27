@@ -62,7 +62,11 @@ class App extends Component {
               <h3>Best Buy Products</h3>
               <Index indexName="bestbuy" hit={BestBuyProduct}/>
               <h3>Ikea Products</h3>
-              <Index indexName="ikea" hit={IkeaProduct}/>
+              <div className="nested-div-1">
+                <div className="nested-div-2">
+                  <Index indexName="ikea" hit={IkeaProduct}/>
+                </div>
+              </div>
             </AutoComplete>
           </div>
         </div>

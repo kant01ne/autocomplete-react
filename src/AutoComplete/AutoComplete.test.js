@@ -37,7 +37,18 @@ describe('<AutoComplete />', () =>  {
     expect(wrapper.state().value).to.equal('');
   });
 
-  it.only('Populate children elements props properly', () => {
+  it('renders without crashing for empty Autocomplete', () => {
+    let wrapper = shallow(
+      <AutoComplete
+        appId='abc123'
+        apiKey='supersecret'
+      />
+    );
+    expect(wrapper.find(SearchBox).length).to.equal(0);
+    expect(wrapper.html()).to.equal('<div></div>');
+  });
+
+  it('Populate children elements props properly', () => {
 
     let wrapper = mount(
       <AutoComplete
@@ -45,11 +56,14 @@ describe('<AutoComplete />', () =>  {
         apiKey='supersecret'
       >
         <SearchBox/>
-        <div>
+        <div className="divWithNoChildren">Test</div>
+        <div className="parentElement1">
           <Index indexName="test"/>
         </div>
       </AutoComplete>
     );
+    expect(wrapper.find('.divWithNoChildren').text()).to.equal('Test');
+    expect(wrapper.find('.parentElement1').contains(<ul/>)).to.equal(true);
     expect(wrapper.find(SearchBox).props().onChange).to.equal(wrapper.instance().onSearchBoxUpdate);
     expect(wrapper.find(Index).props().value).to.equal('');
     expect(wrapper.find(Index).props().appId).to.equal('abc123');
