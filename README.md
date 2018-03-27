@@ -1,6 +1,6 @@
-## Autocomplete-react Algolia
+# Autocomplete-react Algolia
 
-###Install
+## Install
 
 The `autocomplete-react` module should be available on npm soon (or maybe not?)
 
@@ -8,7 +8,7 @@ The `autocomplete-react` module should be available on npm soon (or maybe not?)
   yarn add autocomplete-react
 ```
 
-###Usage
+## Usage
 
 In order to use this React Autocomplete module for Algolia you will need an ALgolia account.
 You can signup with [Algolia account here](https://www.algolia.com/users/sign_up) and create your first indexes.
@@ -16,6 +16,8 @@ You can signup with [Algolia account here](https://www.algolia.com/users/sign_up
 Alternatively if you just want to play around with this module you can an existing data set you can simply use public data provided by algolia. You'll find predefined set of data free to use on the [algolia/dataset github repository](https://github.com/algolia/datasets)
 
 To add an Autocomplete component to your website you will need your index name, appId and apiKey provided by Algolia. You can find those informations in your [Algolia dashboard](https://www.algolia.com/apps/_/api-keys).
+
+### Basic usage
 
 In your React application you can use the following code:
 
@@ -29,6 +31,33 @@ In your React application you can use the following code:
   </AutoComplete>
 ```
 
+### Display custom hits
+
+By default `<Index>` tag will display your hits (results from search) in a list showing the name attribute.
+It is likely that you will want to display your Hits differentely. To achieve this goal let's start by writing a `customHitsDisplay` function:
+
+```javascript
+  const customHitsDisplay = function(hit, key) {
+    <h3>{hit.title}</h3>
+    <span>{hit.shortDescription}</span>
+    <img src={hit.img}/>
+  };
+```
+
+Then in your `Autocomplete` component:
+```javascript
+  <AutoComplete
+    appId="<your-appId>"
+    apiKey="<your-apiKey>"
+  >
+    <SearchBox placeholder="Search for Products"/>
+    <Index indexName="<some-index>" hit={customHitsDisplay}/>
+  </AutoComplete>
+```
+
+
+### Multi index support 
+
 This module supports for multiple indexes:
 
 ```javascript
@@ -41,6 +70,8 @@ This module supports for multiple indexes:
     <Index indexName="<another-index>"/>
   </AutoComplete>
 ```
+
+### Custom page rendering
 
 You can arrange and style what you want to display as you which, creating nested components and overriding the current style of the library:
 
@@ -64,7 +95,7 @@ You can arrange and style what you want to display as you which, creating nested
   </AutoComplete>
 ```
 
-###Contribute
+## Contribute
 
 Clone the current repo locally:
 ```shell
