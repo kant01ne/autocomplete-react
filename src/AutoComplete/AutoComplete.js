@@ -15,36 +15,45 @@ class AutoComplete extends Component {
     });
   }
 
-  render() {
+  _recursiveDOMRendering(children) {
+    children = children.length > 1 ? children : [children]
     let {appId, apiKey} = this.props;
     let onSearchBoxUpdate = this.onSearchBoxUpdate;
-    let children = this.props.children.length > 1 ? this.props.children : [this.props.children]
+    return children.map((children, key) => {
+      switch(children.type) {
+
+      case SearchBox:
+        let searchBoxComponent = React.cloneElement(children, {
+          appId,
+          apiKey,
+          key,
+          onChange: onSearchBoxUpdate,
+        });
+        return searchBoxComponent;
+
+      case Index:
+        let indexComponent = React.cloneElement(children, {
+          appId,
+          apiKey,
+          key,
+          value: this.state.value
+        });
+        return indexComponent;
+
+      default:
+        if (children.props.children && children.props.children.type) {
+          return this._recursiveDOMRendering(children.props.children);
+        } else {
+          return children;
+        }
+      }
+    });
+  }
+
+  render() {
     return (
       <div>
-        {children &&
-          children.map((children, key) => {
-            switch(children.type) {
-              case SearchBox:
-                let searchBoxComponent = React.cloneElement(children, {
-                  appId,
-                  apiKey,
-                  key,
-                  onChange: onSearchBoxUpdate,
-                });
-                return searchBoxComponent;
-              case Index:
-                let indexComponent = React.cloneElement(children, {
-                  appId,
-                  apiKey,
-                  key,
-                  value: this.state.value
-                });
-                return indexComponent;
-              default:
-                return children;
-            }
-          })
-        }
+        {this.props.children && this._recursiveDOMRendering(this.props.children)}
       </div>
     );
   }

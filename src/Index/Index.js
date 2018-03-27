@@ -36,7 +36,7 @@ class Index extends Component {
   _request() {
     return axios.create({
       baseURL: `https://${this.props.appId}-dsn.algolia.net/1/indexes/${this.props.indexName}`,
-      timeout: 1000,
+      timeout: 5000,
       headers: {
         'X-Algolia-API-Key': this.props.apiKey,
         'X-Algolia-Application-Id': this.props.appId

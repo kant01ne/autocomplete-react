@@ -37,7 +37,7 @@ describe('<AutoComplete />', () =>  {
     expect(wrapper.state().value).to.equal('');
   });
 
-  it('Populate children elements props properly', () => {
+  it.only('Populate children elements props properly', () => {
 
     let wrapper = mount(
       <AutoComplete
@@ -45,10 +45,11 @@ describe('<AutoComplete />', () =>  {
         apiKey='supersecret'
       >
         <SearchBox/>
-        <Index indexName="test"/>
+        <div>
+          <Index indexName="test"/>
+        </div>
       </AutoComplete>
     );
-
     expect(wrapper.find(SearchBox).props().onChange).to.equal(wrapper.instance().onSearchBoxUpdate);
     expect(wrapper.find(Index).props().value).to.equal('');
     expect(wrapper.find(Index).props().appId).to.equal('abc123');
