@@ -44,6 +44,9 @@ It is likely that you will want to display your Hits differentely. To achieve th
   };
 ```
 
+React needs every elements in a `map` to be populated with a key in order to identify which items have changed( see [official React doc](https://reactjs.org/docs/lists-and-keys.html)). To prevent from the React noisy warning to happen, make sure to add a `key` attribute to your custom rendering function.
+
+
 Then in your `Autocomplete` component:
 ```javascript
   <AutoComplete
@@ -95,6 +98,16 @@ You can arrange and style what you want to display as you which, creating nested
   </AutoComplete>
 ```
 
+### Autocomplete/ How does it work
+
+Before the first rendering, under the hood the Autocomplete component populates its children elements with aditional props.
+
+The AutoComplete element adds `appId` and `apiKey` to each of its children `Index`. It will also insert its state value as a props in each Index.
+
+The autoComplete element will propagate an `onSearchBoxInput` function to any `SearchBox` provided in order to lift the value state up from `SearchBox` to `AutoComplete` which will then propagate this value to its `Index` children in order to reload the Hits.
+
+Take a look at AutoComplete rendering function to get the big picture of where the magic happens.
+
 ## Contribute
 
 Clone the current repo locally:
@@ -115,5 +128,6 @@ To run the test suit:
 - Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
 - Fork the project.
 - Start a feature/bugfix branch.
+- Make sure you add your exemple to the App.js file containing all examples IF necessary
 - Commit and push until you are happy with your contribution.
 - Make sure to add tests for it. This is important so we don't break it in a future version unintentionally.
