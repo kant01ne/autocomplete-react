@@ -9,8 +9,7 @@ class SearchBox extends Component {
 
   constructor(props) {
     super(props);
-    let value = this.props.defaultValue || '';
-    this.state = {value: value};
+    this.state = {value: ''};
 
     this.handleChange = this.handleChange.bind(this);
   }

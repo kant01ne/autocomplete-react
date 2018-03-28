@@ -66,6 +66,7 @@ describe('<Index />', () =>  {
         }).then(() => {
           expect(JSON.parse(request.config.data)['query']).to.equal('random-value')
           expect(wrapper.state().hits).to.eql([]);
+          expect(wrapper.html()).to.equal('<div>No results</div>');
           done();
         });
     });

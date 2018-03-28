@@ -7,6 +7,7 @@ class AutoComplete extends Component {
   constructor(props) {
     super(props);
     this.state = {value: ''};
+
     this.onSearchBoxUpdate = this.onSearchBoxUpdate.bind(this);
   }
 
@@ -16,40 +17,41 @@ class AutoComplete extends Component {
     });
   }
 
-  _recursivelyPopulateChildrenProps(children) {
-    children = children.length > 1 ? children : [children]
+  _recursivelyPopulateChildrenProps(elements) {
+    elements = elements.length > 1 ? elements : [elements]
     let {appId, apiKey} = this.props;
-    let onSearchBoxUpdate = this.onSearchBoxUpdate;
-    return children.map((children, key) => {
+    const onSearchBoxUpdate = this.onSearchBoxUpdate;
+    return elements.map((children, key) => {
       switch(children.type) {
 
-      case SearchBox:
-        let searchBoxComponent = React.cloneElement(children, {
-          appId,
-          apiKey,
-          key,
-          onChange: onSearchBoxUpdate,
-        });
-        return searchBoxComponent;
-
-      case Index:
-        let indexComponent = React.cloneElement(children, {
-          appId,
-          apiKey,
-          key,
-          value: this.state.value
-        });
-        return indexComponent;
-
-      default:
-        if (children.props.children && children.props.children.type) {
+        case SearchBox:
           return React.cloneElement(children, {
+            appId,
+            apiKey,
             key,
-            children: this._recursivelyPopulateChildrenProps(children.props.children)
+            onChange: onSearchBoxUpdate,
           });
-        } else {
-          return children;
-        }
+
+        case Index:
+          if (this.state.value === '') {return;}
+          return React.cloneElement(children, {
+            appId,
+            apiKey,
+            key,
+            value: this.state.value
+          });
+
+        default:
+          if (this.state.value === '') {
+            return;
+          } else if (children.props.children && (Array.isArray(children.props.children) || children.props.children.type)) {
+            return React.cloneElement(children, {
+              key,
+              children: this._recursivelyPopulateChildrenProps(children.props.children, this.state.value)
+            });
+          } else {
+            return children;
+          }
       }
     });
   }
