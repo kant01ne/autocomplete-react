@@ -51,16 +51,26 @@ class Index extends Component {
     }
   }
 
-  render() {
+  withoutHitsDOM() {
+    return <div>No results</div>
+  }
+
+  withHitsDOM() {
     const Hit = this.props.hit || function(item, key) {
       return <li key={key}>{item.name}</li>
     }
+
+    return <ul>
+      {this.state.hits.map((item, key) => {
+        return Hit(item, key);
+      })}
+    </ul>
+  }
+
+  render() {
+    const dom = this.state.hits.length > 0 ? this.withHitsDOM() : this.withoutHitsDOM();
     return (
-      <ul>
-        {this.state.hits && this.state.hits.map((item, key) => {
-          return Hit(item, key);
-        })}
-      </ul>
+      dom
     );
   }
 }

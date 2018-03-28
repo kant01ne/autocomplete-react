@@ -43,9 +43,4 @@ describe('<SearchBox />', () =>  {
     expect(onChange.callCount).to.equal(1);
   });
 
-    it('can define default value', () => {
-      let wrapper = shallow(<SearchBox onChange={onChange} defaultValue='testValue'/>);
-      expect(wrapper.state().value).to.equal('testValue');
-    });
-
 });

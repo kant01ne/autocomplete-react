@@ -45,12 +45,19 @@ class App extends Component {
               apiKey="6be0576ff61c053d5f9a3225e2a90f76"
             >
               <SearchBox placeholder="Search for BestBuy or Ikea Products"/>
-              <h3>Best Buy Products</h3>
-              <Index indexName="bestbuy" hit={BestBuyProduct}/>
-              <h3>Ikea Products</h3>
-              <div className="nested-div-1">
-                <div className="nested-div-2">
-                  <Index indexName="ikea" hit={IkeaProduct}/>
+              <hr/>
+              <div className="container">
+                <div className="flex-2">
+                  <h3>Best Buy Products</h3>
+                  <Index indexName="bestbuy" hit={BestBuyProduct}/>
+                </div>
+                <div className="flex-2">
+                  <h3>Ikea Products</h3>
+                  <div className="nested-div-1">
+                    <div className="nested-div-2">
+                      <Index indexName="ikea" hit={IkeaProduct}/>
+                    </div>
+                  </div>
                 </div>
               </div>
             </AutoComplete>
@@ -61,12 +68,6 @@ class App extends Component {
             <div className="flex-2">
               <SearchBox
                 placeholder="SearchBox with placeholder"
-                onChange={this.onSearchBoxInput}
-              />
-            </div>
-            <div className="flex-2">
-              <SearchBox
-                defaultValue='SearchBox with default value'
                 onChange={this.onSearchBoxInput}
               />
             </div>

@@ -45,10 +45,10 @@ describe('<AutoComplete />', () =>  {
       />
     );
     expect(wrapper.find(SearchBox).length).to.equal(0);
-    expect(wrapper.html()).to.equal('<div></div>');
+    expect(wrapper.html()).to.equal('<div style="width:100%"></div>');
   });
 
-  it('Populate children elements props properly', () => {
+  it('Populate children elements props properly (when value is present)', () => {
 
     let wrapper = mount(
       <AutoComplete
@@ -62,27 +62,44 @@ describe('<AutoComplete />', () =>  {
         </div>
       </AutoComplete>
     );
+    wrapper.find('input').simulate('change', {target: {value: 'val'}}) //Make a simple research to display the rest of the autocomplete elements
     expect(wrapper.find('.divWithNoChildren').text()).to.equal('Test');
-    expect(wrapper.find('.parentElement1').contains(<ul/>)).to.equal(true);
     expect(wrapper.find(SearchBox).props().onChange).to.equal(wrapper.instance().onSearchBoxUpdate);
-    expect(wrapper.find(Index).props().value).to.equal('');
+    expect(wrapper.find(Index).props().value).to.equal('val');
     expect(wrapper.find(Index).props().appId).to.equal('abc123');
     expect(wrapper.find(Index).props().apiKey).to.equal('supersecret');
   });
 
-  it('update state value on user input with SearchBox present and propagate to Index', () => {
-    let wrapper = mount(
-      <AutoComplete
-        appId='abc123'
-        apiKey='supersecret'
-      >
-        <SearchBox/>
-        <Index indexName="test"/>
-      </AutoComplete>
-    );
-    wrapper.find('input').simulate('change', {target: {value: 'test-xyz'}})
-    expect(wrapper.state().value).to.equal('test-xyz');
-    expect(wrapper.find(Index).props().value).to.equal('test-xyz');
+    it('Open/hide everything based on value (except SearchBox always displayed)', () => {
 
-  });
+      let wrapper = mount(
+        <AutoComplete
+          appId='abc123'
+          apiKey='supersecret'
+        >
+          <SearchBox/>
+          <div className="divWithNoChildren">Test</div>
+          <div className="parentElement1">
+            <Index indexName="test"/>
+          </div>
+        </AutoComplete>
+      );
+
+      //Only SearchBox displayed
+      expect(wrapper.find(SearchBox).length).to.equal(1);
+      expect(wrapper.find('.divWithNoChildren').length).to.equal(0);
+      expect(wrapper.find(Index).length).to.equal(0);
+
+      //User input should show Indexes
+      wrapper.find('input').simulate('change', {target: {value: 'test-xyz'}});
+      expect(wrapper.state().value).to.equal('test-xyz');
+      expect(wrapper.find(Index).props().value).to.equal('test-xyz');
+
+       //Clear value should remove Indexes
+      wrapper.find('input').simulate('change', {target: {value: ''}});
+      expect(wrapper.find(SearchBox).length).to.equal(1);
+      expect(wrapper.find('.divWithNoChildren').length).to.equal(0);
+      expect(wrapper.find(Index).length).to.equal(0);
+
+    });
 });
