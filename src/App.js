@@ -70,6 +70,12 @@ class App extends Component {
                 placeholder="SearchBox with placeholder"
                 onChange={this.onSearchBoxInput}
               />
+              <br/><br/>
+              <SearchBox
+                style={{color:'red', backgroundColor:'blue'}}
+                placeholder="blue background and red color"
+                onChange={this.onSearchBoxInput}
+              />
             </div>
           </div>
           <h2>Testing the Index component (value=Sony)</h2>

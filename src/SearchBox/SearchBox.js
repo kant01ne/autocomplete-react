@@ -25,6 +25,7 @@ class SearchBox extends Component {
     return (
       <input id="searchBox"
         type="search"
+        style={this.props.style}
         placeholder={this.props.placeholder}
         value={this.state.value}
         onChange={this.handleChange}
