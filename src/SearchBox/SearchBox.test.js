@@ -19,7 +19,7 @@ describe('<SearchBox />', () =>  {
 
   it('renders without crashing', () => {
     let wrapper = shallow(<SearchBox onChange={onChange} placeholder="Should display this placeholder"/>);
-    expect(wrapper.find('input').html()).to.equal('<input type="search" id="searchBox" placeholder="Should display this placeholder" value=""/>');
+    expect(wrapper.find('input').html()).to.equal('<input id="searchBox" placeholder="Should display this placeholder" value=""/>');
   });
 
   it('set the state value when user types in', () => {
@@ -41,6 +41,16 @@ describe('<SearchBox />', () =>  {
     let wrapper = shallow(<SearchBox onChange={onChange}/>);
     wrapper.find('input').simulate('change', {target: {value: 't'}})
     expect(onChange.callCount).to.equal(1);
+  });
+
+  it('clear input button propagates empty value to onChange', () => {
+    let wrapper = shallow(<SearchBox onChange={onChange}/>);
+    expect(wrapper.find('#clearSearchBox').length).to.equal(0);
+    wrapper.find('input').simulate('change', {target: {value: 'any input will show the clear button'}})
+    wrapper.find('#clearSearchBox').simulate('click', {target: {value: 'doesnt matter which value is propagated in this event'}});
+    expect(onChange.callCount).to.equal(2);
+    expect(wrapper.state().value).to.equal('');
+
   });
 
 });

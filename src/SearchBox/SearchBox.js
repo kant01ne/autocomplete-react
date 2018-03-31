@@ -11,11 +11,19 @@ class SearchBox extends Component {
     super(props);
     this.state = {value: ''};
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleInput = this.handleInput.bind(this);
+    this.clearInput = this.clearInput.bind(this);
   }
 
-  handleChange(event) {
+  handleInput(event) {
    this.setState({value: event.target.value});
+   if(this.props.onChange) {
+     this.props.onChange(event.target.value);
+   }
+ }
+
+ clearInput(event) {
+   this.setState({value: ''});
    if(this.props.onChange) {
      this.props.onChange(event.target.value);
    }
@@ -23,13 +31,15 @@ class SearchBox extends Component {
 
   render() {
     return (
-      <input id="searchBox"
-        type="search"
-        style={this.props.style}
-        placeholder={this.props.placeholder}
-        value={this.state.value}
-        onChange={this.handleChange}
-      />
+      <div>
+        <input id="searchBox"
+          style={this.props.style}
+          placeholder={this.props.placeholder}
+          value={this.state.value}
+          onChange={this.handleInput}
+        />
+        {this.state.value && <button type="reset" id="clearSearchBox" onClick={this.clearInput}/>}
+      </div>
     );
   }
 }
