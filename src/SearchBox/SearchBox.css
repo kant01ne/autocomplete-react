@@ -18,3 +18,16 @@
 	outline: none;
 	 box-shadow: 0 0 3pt 2pt #ddd;
  }
+
+button#clearSearchBox {
+	background-image: url('clear.svg');
+	color: #424242;
+	height:12px;
+	width:12px;
+	margin-left: -30px;
+	background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+}
