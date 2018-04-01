@@ -21,7 +21,7 @@ To add an Autocomplete component to your website you will need your index name, 
 
 In your React application you can use the following code:
 
-```javascript
+```jsx
   <AutoComplete
     appId="<your-appId>"
     apiKey="<your-apiKey>"
@@ -36,7 +36,7 @@ In your React application you can use the following code:
 By default `<Index>` tag will display your hits (results from search) in a list showing the name attribute.
 It is likely that you will want to display your Hits differentely. To achieve this goal let's start by writing a `customHitsDisplay` function:
 
-```javascript
+```jsx
 function customHitsDisplay(hit, key) {
   return(
     <div>
@@ -46,12 +46,13 @@ function customHitsDisplay(hit, key) {
     </div>
   );
 }
+```
 
 React needs every elements in a `map` to be populated with a key in order to identify which items have changed( see [official React doc](https://reactjs.org/docs/lists-and-keys.html)). To prevent from the React noisy warning to happen, make sure to add a `key` attribute to your custom rendering function.
 
 
 Then in your `Autocomplete` component:
-```javascript
+```jsx
   <AutoComplete
     appId="<your-appId>"
     apiKey="<your-apiKey>"
@@ -66,7 +67,7 @@ Then in your `Autocomplete` component:
 If you want to show highlighted results you can modify your customHitsDsplay method using the `<Highlight>` component:
 
 
-```javascript
+```jsx
 function customHitsDisplay(hit, key) {
   return(
     <div>
@@ -84,7 +85,7 @@ If you do not provide a `tag` prop to the `Highlight` component, by default it w
 
 If you want your seachBox to stick to the top of the page while your users scroll down the page you can simply wrap your SearchBox element in a StickySearchBox component:
 
-```javascript
+```jsx
   <AutoComplete
     appId="<your-appId>"
     apiKey="<your-apiKey>"
@@ -100,7 +101,7 @@ If you want your seachBox to stick to the top of the page while your users scrol
 
 This module supports for multiple indexes:
 
-```javascript
+```jsx
   <AutoComplete
     appId="<your-appId>"
     apiKey="<your-apiKey>"
@@ -115,7 +116,7 @@ This module supports for multiple indexes:
 
 You can arrange and style what you want to display as you which, creating nested components and overriding the current style of the library:
 
-```javascript
+```jsx
   <AutoComplete
     appId="<your-appId>"
     apiKey="<your-apiKey>"
