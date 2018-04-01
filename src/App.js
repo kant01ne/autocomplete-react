@@ -3,12 +3,13 @@ import SearchBox from './SearchBox/SearchBox';
 import StickySearchBox from './StickySearchBox/StickySearchBox';
 import AutoComplete from './AutoComplete/AutoComplete';
 import Index from './Index/Index';
+import Highlight from './Highlight/Highlight';
 import './App.css';
 
 function BestBuyProduct(hit, key) {
   return(
     <li key={key}>
-      {hit.name}
+      <Highlight attribute="name" hit={hit} key={key}/>
     </li>
   );
 }
