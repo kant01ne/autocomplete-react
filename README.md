@@ -37,12 +37,15 @@ By default `<Index>` tag will display your hits (results from search) in a list 
 It is likely that you will want to display your Hits differentely. To achieve this goal let's start by writing a `customHitsDisplay` function:
 
 ```javascript
-  const customHitsDisplay = function(hit, key) {
-    <h3>{hit.title}</h3>
-    <span>{hit.shortDescription}</span>
-    <img src={hit.img}/>
-  };
-```
+function customHitsDisplay(hit, key) {
+  return(
+    <div>
+      <h3>{hit.title}</h3>
+      <span>{hit.shortDescription}</span>
+      <img src={hit.img}/>
+    </div>
+  );
+}
 
 React needs every elements in a `map` to be populated with a key in order to identify which items have changed( see [official React doc](https://reactjs.org/docs/lists-and-keys.html)). To prevent from the React noisy warning to happen, make sure to add a `key` attribute to your custom rendering function.
 
@@ -64,11 +67,15 @@ If you want to show highlighted results you can modify your customHitsDsplay met
 
 
 ```javascript
-  const customHitsDisplay = function(hit, key) {
-    <Highlight attribute='name' hit={hit} tag="h3"/>
-    <Highlight attribute='shortDescription' hit={hit} tag="span"/>
-    <img src={hit.img}/>
-  };
+function customHitsDisplay(hit, key) {
+  return(
+    <div>
+      <Highlight key={key} attribute='name' hit={hit} tag="h3"/>
+      <Highlight attribute='shortDescription' hit={hit} tag="span"/>
+      <img src={hit.img}/>)
+    </div>
+  );
+}
 ```
 
 If you do not provide a `tag` prop to the `Highlight` component, by default it will highlight with an `<em>` html tag.
