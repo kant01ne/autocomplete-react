@@ -57,7 +57,21 @@ Then in your `Autocomplete` component:
     <Index indexName="<some-index>" hit={customHitsDisplay}/>
   </AutoComplete>
 ```
+###  Sticky SearchBox
 
+If you want your seachBox to stick to the top of the page while your users scroll down the page you can simply wrap your SearchBox element in a StickySearchBox component:
+
+```javascript
+  <AutoComplete
+    appId="<your-appId>"
+    apiKey="<your-apiKey>"
+  >
+    <StickySearchBox>
+      <SearchBox placeholder="Search for Products"/>
+    </StickySearchBox>
+    <Index indexName="<some-index>"/>
+  </AutoComplete>
+```
 
 ###  Multi index support
 
