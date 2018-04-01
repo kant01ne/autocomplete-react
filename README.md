@@ -38,8 +38,8 @@ It is likely that you will want to display your Hits differentely. To achieve th
 
 ```javascript
   const customHitsDisplay = function(hit, key) {
-    <Highlight attribute='name' hit={hit} tag="h3"/>
-    <Highlight attribute='shortDescription' hit={hit} tag="span"/>
+    <h3>{hit.title}</h3>
+    <span>{hit.shortDescription}</span>
     <img src={hit.img}/>
   };
 ```
@@ -60,20 +60,18 @@ Then in your `Autocomplete` component:
 
 ###  Highlight results
 
-If you want to show highlighted results you can modify:
+If you want to show highlighted results you can modify your customHitsDsplay method using the `<Highlight>` component:
+
 
 ```javascript
-  <AutoComplete
-    appId="<your-appId>"
-    apiKey="<your-apiKey>"
-  >
-    <StickySearchBox>
-      <SearchBox placeholder="Search for Products"/>
-    </StickySearchBox>
-    <Index indexName="<some-index>"/>
-  </AutoComplete>
+  const customHitsDisplay = function(hit, key) {
+    <Highlight attribute='name' hit={hit} tag="h3"/>
+    <Highlight attribute='shortDescription' hit={hit} tag="span"/>
+    <img src={hit.img}/>
+  };
 ```
 
+If you do not provide a `tag` prop to the `Highlight` component, by default it will highlight with an `<em>` html tag.
 
 ###  Sticky SearchBox
 
