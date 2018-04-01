@@ -1,0 +1,17 @@
+#stickySearchBox {
+  overflow: hidden;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #ddd;
+	z-index:10;
+}
+
+
+/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+.sticky {
+  background-color: #ECEFF1;
+  opacity: 1 !important;
+  position: fixed;
+	top: 0px;
+  padding-top: 10px;
+  width: 90%
+}

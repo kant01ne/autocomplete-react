@@ -47,6 +47,7 @@ describe('<SearchBox />', () =>  {
     let wrapper = shallow(<SearchBox onChange={onChange}/>);
     expect(wrapper.find('#clearSearchBox').length).to.equal(0);
     wrapper.find('input').simulate('change', {target: {value: 'any input will show the clear button'}})
+    expect(wrapper.find('#clearSearchBox').length).to.equal(1);
     wrapper.find('#clearSearchBox').simulate('click', {target: {value: 'doesnt matter which value is propagated in this event'}});
     expect(onChange.callCount).to.equal(2);
     expect(wrapper.state().value).to.equal('');
