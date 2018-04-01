@@ -8,8 +8,8 @@ class Highlight extends Component {
     if (this.props.tag) {
       const openingTag = `<${this.props.tag}>`;
       const closingTag = `</${this.props.tag}>`;
-      value = value.replace('<em>', openingTag);
-      value = value.replace('</em>', closingTag);
+      value = value.replace(new RegExp('<em>', 'g'), openingTag);
+      value = value.replace(new RegExp('</em>', 'g'), closingTag);
     }
     return value;
   }
