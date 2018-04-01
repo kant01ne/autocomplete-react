@@ -38,8 +38,8 @@ It is likely that you will want to display your Hits differentely. To achieve th
 
 ```javascript
   const customHitsDisplay = function(hit, key) {
-    <h3>{hit.title}</h3>
-    <span>{hit.shortDescription}</span>
+    <Highlight attribute='name' hit={hit} tag="h3"/>
+    <Highlight attribute='shortDescription' hit={hit} tag="span"/>
     <img src={hit.img}/>
   };
 ```
@@ -57,6 +57,24 @@ Then in your `Autocomplete` component:
     <Index indexName="<some-index>" hit={customHitsDisplay}/>
   </AutoComplete>
 ```
+
+###  Highlight results
+
+If you want to show highlighted results you can modify:
+
+```javascript
+  <AutoComplete
+    appId="<your-appId>"
+    apiKey="<your-apiKey>"
+  >
+    <StickySearchBox>
+      <SearchBox placeholder="Search for Products"/>
+    </StickySearchBox>
+    <Index indexName="<some-index>"/>
+  </AutoComplete>
+```
+
+
 ###  Sticky SearchBox
 
 If you want your seachBox to stick to the top of the page while your users scroll down the page you can simply wrap your SearchBox element in a StickySearchBox component:
