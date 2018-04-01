@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SearchBox from './SearchBox/SearchBox';
+import StickySearchBox from './StickySearchBox/StickySearchBox';
 import AutoComplete from './AutoComplete/AutoComplete';
 import Index from './Index/Index';
 import './App.css';
@@ -44,8 +45,9 @@ class App extends Component {
               appId="latency"
               apiKey="6be0576ff61c053d5f9a3225e2a90f76"
             >
-              <SearchBox placeholder="Search for BestBuy or Ikea Products"/>
-              <hr/>
+              <StickySearchBox>
+                <SearchBox placeholder="Search for BestBuy or Ikea Products"/>
+              </StickySearchBox>
               <div className="container">
                 <div className="flex-2">
                   <h3>Best Buy Products</h3>
@@ -88,10 +90,12 @@ class App extends Component {
               hit={BestBuyProduct}
             />
           </div>
+        <span style={{'height':'800px'}}>Test</span>
         </div>
       </div>
     );
   }
 }
+
 
 export default App;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SearchBox from '../SearchBox/SearchBox';
+import StickySearchBox from '../StickySearchBox/StickySearchBox';
 import Index from '../Index/Index';
-
 
 class AutoComplete extends Component {
   constructor(props) {
@@ -32,8 +32,16 @@ class AutoComplete extends Component {
             onChange: onSearchBoxUpdate,
           });
 
+        case StickySearchBox:
+          return React.cloneElement(children, {
+            key,
+            children: this._recursivelyPopulateChildrenProps(children.props.children, this.state.value)
+          });
+
         case Index:
-          if (this.state.value === '') {return;}
+          if (this.state.value === '') {
+            return;
+          }
           return React.cloneElement(children, {
             appId,
             apiKey,
