@@ -9,7 +9,7 @@ import './App.css';
 function BestBuyProduct(hit, key) {
   return(
     <li key={key}>
-      <Highlight attribute="name" hit={hit} key={key}/>
+      <Highlight attribute="name" hit={hit} key={key} tag="strong"/>
     </li>
   );
 }

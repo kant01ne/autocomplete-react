@@ -50,6 +50,17 @@ describe('<Highlight />', () =>  {
         />
       );
       expect(wrapper.html()).to.equal('<span>Mi</span>ke');
+
+      //modify ALL the tags
+      wrapper = render(
+        <Highlight
+          attribute='email'
+          hit={item}
+          tag="strong"
+        />
+      );
+      expect(wrapper.html()).to.equal('<strong>mi</strong>ke@<strong>mi</strong>kecompany.com');
+
     });
 
 });
