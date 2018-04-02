@@ -1,3 +1,10 @@
+
+
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/skaelv/autocomplete-react/compare/v0.2.0...v0.3.0) (2018-04-02)
+
+- Support for highlighting hits results
+
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/skaelv/autocomplete-react/compare/v0.1.1...v0.2.0) (2018-04-01)
 
